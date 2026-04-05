@@ -39,6 +39,8 @@
 
   <button class="buy-btn" onclick="buyNow()">Unlock Full Version</button>
 
+  <button onclick="goBack()">Back to NexaCore Website</button>
+
   <div class="notice">
     Demo version: PDF download and email features are locked. Contact NexaCore Solutions to get full access.
   </div>
@@ -88,6 +90,10 @@ function generateInvoice(){
 
 function buyNow(){
   window.location.href = "mailto:nexacore.solutions.sa@gmail.com?subject=Invoice Generator Purchase&body=Hi, I want to buy the full invoice generator.";
+}
+
+function goBack(){
+  window.location.href = "https://yourusername.github.io/NexaCore/";
 }
 </script>
 </body>
