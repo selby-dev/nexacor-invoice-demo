@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexaCore Invoice Generator (Demo)</title>
+  <style>
+    body { font-family: Arial; background:#0f172a; color:white; display:flex; justify-content:center; align-items:center; min-height:100vh; }
+    .container { background:#1e293b; padding:20px; border-radius:12px; width:95%; max-width:600px; }
+    input, textarea, select, button { width:100%; padding:10px; margin-top:10px; border-radius:8px; border:none; font-size:16px; }
+    button { background:#38bdf8; font-weight:bold; cursor:pointer; }
+    .output { margin-top:15px; background:#020617; padding:15px; border-radius:8px; white-space:pre-wrap; }
+    .buy-btn { background:#22c55e; }
+    .notice { margin-top:10px; font-size:13px; color:#94a3b8; text-align:center; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2>NexaCore Invoice Generator (Demo)</h2>
+
+  <input id="client" placeholder="Client Name">
+  <input id="service" placeholder="Service">
+  <textarea id="details" placeholder="Service Details"></textarea>
+
+  <input id="price" type="text" placeholder="Price (R)">
+  <input id="qty" type="text" placeholder="Quantity">
+
+  <input id="date" type="date">
+
+  <select id="tone">
+    <option value="professional">Professional</option>
+    <option value="simple">Simple</option>
+    <option value="detailed">Detailed</option>
+  </select>
+
+  <button onclick="generateInvoice()">Generate Demo Invoice</button>
+
+  <div class="output" id="output"></div>
+
+  <button class="buy-btn" onclick="buyNow()">Unlock Full Version</button>
+
+  <div class="notice">
+    Demo version: PDF download and email features are locked. Contact NexaCore Solutions to get full access.
+  </div>
+</div>
+
+<script>
+let invoiceCount = 0;
+let demoLimit = 3;
+
+function generateInvoice(){
+  if(invoiceCount >= demoLimit){
+    document.getElementById('output').innerText = 
+    "Demo limit reached. Please purchase the full version to continue.";
+    return;
+  }
+
+  let client = document.getElementById('client').value;
+  let service = document.getElementById('service').value;
+  let details = document.getElementById('details').value;
+  let price = parseFloat(document.getElementById('price').value);
+  let qty = parseInt(document.getElementById('qty').value);
+  let date = document.getElementById('date').value;
+  let tone = document.getElementById('tone').value;
+
+  if(!client||!service||!details||isNaN(price)||isNaN(qty)||!date){
+    document.getElementById('output').innerText="Fill all fields correctly";
+    return;
+  }
+
+  invoiceCount++;
+
+  let total = price * qty;
+
+  let desc = "";
+  if(tone==='simple'){
+    desc = `Service: ${service}\nDetails: ${details}`;
+  } else if(tone==='detailed'){
+    desc = `This invoice covers ${service}, including ${details}. Work was completed thoroughly ensuring top performance and reliability.`;
+  } else {
+    desc = `Professional service provided for ${service}, including ${details}. Work completed to a high standard.`;
+  }
+
+  let invoiceText = `NexaCore Solutions\nInvoice #: ${invoiceCount}\nDate: ${date}\n\nClient: ${client}\n\n${desc}\n\nPrice: R${price}\nQuantity: ${qty}\nTotal: R${total}\n\n(This is a demo invoice)`;
+
+  document.getElementById('output').innerText = invoiceText;
+}
+
+function buyNow(){
+  window.location.href = "mailto:nexacore.solutions.sa@gmail.com?subject=Invoice Generator Purchase&body=Hi, I want to buy the full invoice generator.";
+}
+</script>
+</body>
+</html>
