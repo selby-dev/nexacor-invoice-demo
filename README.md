@@ -11,14 +11,6 @@ This demo allows users to quickly generate professional invoice descriptions in 
 
 ---
 
-## 🎥 Demo Video
-
-> *(Upload your video to GitHub or use a link like YouTube)*
-
-[![Watch Demo](https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg)](InShot_20260406_092358091.mp4)
-
----
-
 ## 🖼️ Screenshots
 
 ### 🔹 Invoice Generator Interface
